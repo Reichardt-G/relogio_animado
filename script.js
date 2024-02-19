@@ -114,6 +114,29 @@ function relogio() {
 
     ctx.restore(); // Restaurar ao estado padrão
 
+    // Inserir horário digitado
+    const hr24 = agora.getHours() % 24;
+    let horaFormatada;
+    if (seg % 2 === 0){
+        horaFormatada = `${hr24.toString().padStart(2,"0")}:${min.toString().padStart(2,"0")}:${seg.toString().padStart(2,"0")}
+            <style>
+                body{
+                    text-align: center;
+                }
+            </style>
+        `;
+    } else {
+        horaFormatada = `${hr24.toString().padStart(2,"0")} ${min.toString().padStart(2,"0")} ${seg.toString().padStart(2,"0")}
+            <style>
+                body{
+                    text-align: center;
+                }
+            </style>
+        `;
+    }
+    const elemento = document.querySelector("#horario"); 
+    elemento.innerHTML = horaFormatada;   
+
     requestAnimationFrame(relogio); // LOOP da animação do relógio
 } 
 
