@@ -59,12 +59,60 @@ function relogio() {
 
     ctx.restore();
 
-    //Pegar o horário atual
-    // const hr = now.getHours() % 12;
-    // const min = now.getMinutes();
-    // const sec = now.getSeconds();
+    // Pegar o horário atual
+    const hr = agora.getHours() % 12;
+    const min = agora.getMinutes();
+    const seg = agora.getSeconds();
 
-    // console.log(hr);
+    console.log(hr);
+
+    // Desenhar ponteiro das horas
+    ctx.save();
+
+    ctx.rotate((Math.PI / 6) * hr + (Math.PI /360) * min + (Math.PI/21600) * seg);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(45, 0);
+    ctx.stroke();
+
+    ctx.restore();
+
+    // Desenhar ponteiro dos minutos
+    ctx.save();
+
+    ctx.rotate((Math.PI / 30) * min + (Math.PI/1800) * seg);
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(90, 0);
+    ctx.stroke();
+
+
+    ctx.restore();
+
+     // Desenhar ponteiro dos segundos
+     ctx.save();
+
+     ctx.rotate((Math.PI/30) * seg);
+     ctx.strokeStyle = "black";
+     //ctx.fillStyle = "#FF7F50";
+     ctx.fillStyle = "black";
+     ctx.lineWidth = 6;
+     ctx.beginPath();
+     ctx.moveTo(0, 0);
+     ctx.lineTo(100, 0);
+     ctx.stroke();
+
+     //Bolinha no centro do relógio
+     ctx.beginPath();
+     ctx.arc(0,0, 8, 0, Math.PI * 2, true);
+     ctx.fill();
+     ctx.restore();
+ 
+     ctx.restore();
 
     ctx.restore(); // Restaurar ao estado padrão
 } 
