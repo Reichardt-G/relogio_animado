@@ -64,8 +64,6 @@ function relogio() {
     const min = agora.getMinutes();
     const seg = agora.getSeconds();
 
-    console.log(hr);
-
     // Desenhar ponteiro das horas
     ctx.save();
 
@@ -74,7 +72,7 @@ function relogio() {
     ctx.lineWidth = 8;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(45, 0);
+    ctx.lineTo(60, 0);
     ctx.stroke();
 
     ctx.restore();
@@ -83,7 +81,7 @@ function relogio() {
     ctx.save();
 
     ctx.rotate((Math.PI / 30) * min + (Math.PI/1800) * seg);
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = "black";
     ctx.lineWidth = 6;
     ctx.beginPath();
     ctx.moveTo(0, 0);
@@ -97,12 +95,12 @@ function relogio() {
      ctx.save();
 
      ctx.rotate((Math.PI/30) * seg);
-     ctx.strokeStyle = "black";
+     ctx.strokeStyle = "red";
      //ctx.fillStyle = "#FF7F50";
-     ctx.fillStyle = "black";
+     ctx.fillStyle = "red";
      ctx.lineWidth = 6;
      ctx.beginPath();
-     ctx.moveTo(0, 0);
+     ctx.moveTo(-10, 0);
      ctx.lineTo(100, 0);
      ctx.stroke();
 
@@ -115,6 +113,8 @@ function relogio() {
      ctx.restore();
 
     ctx.restore(); // Restaurar ao estado padrão
+
+    requestAnimationFrame(relogio); // LOOP da animação do relógio
 } 
 
-relogio();
+requestAnimationFrame(relogio);
